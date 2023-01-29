@@ -4,6 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
+		"server": "./db/pocketbase serve",
+		"typegen": "npx pocketbase-typegen --db ./db/pb_data/data.db --out ./src/types/pocketbase-types.ts",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

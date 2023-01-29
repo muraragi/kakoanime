@@ -1,14 +1,15 @@
 import type { ServerLoadEvent } from '@sveltejs/kit'
+import { Collections, type TestResponse } from '../types/pocketbase-types'
 import type { PageServerLoad } from './$types'
 
 export const load = (async ({ locals }: ServerLoadEvent) => {
-	const records = await locals.pb.collection('test').getFullList(200 /* batch size */, {
+	const records = await locals.pb.collection(Collections.Test).getFullList(200, {
 		sort: '-created'
 	})
 
-	console.log(records)
+	const formattedRecords = records.map((r) => r.export() as TestResponse)
 
 	return {
-		testData: records.map((r) => r.export())
+		testData: formattedRecords
 	}
 }) satisfies PageServerLoad
