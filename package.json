@@ -2,6 +2,7 @@
 	"name": "kakoanime",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"server": "./db/pocketbase serve",
@@ -32,8 +33,8 @@
 		"typescript": "^4.9.3",
 		"vite": "^4.0.0"
 	},
-	"type": "module",
 	"dependencies": {
+		"@tutkli/jikan-ts": "^0.6.5",
 		"pocketbase": "^0.10.1"
 	}
 }
