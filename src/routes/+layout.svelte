@@ -12,7 +12,7 @@
 		<a href="/auth">login</a>
 
 		<div class="ml-auto flex gap-x-4">
-			User is: {data.user?.id || 'no user :('}
+			User is: {data.user?.username || 'no user :('}
 			{#if data.user}
 				<form method="POST" action="/auth?/logout" use:enhance>
 					<button>logout</button>

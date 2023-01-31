@@ -5,19 +5,32 @@
 </script>
 
 <div class="p-6">
-	{#each data.testData as dataItem}
-		<h1 class="mt-3 text-center text-2xl first-of-type:mt-0">{dataItem.fieeeeeld}</h1>
-	{/each}
-
 	<div class="my-4">
 		hello {data.user?.username}
 	</div>
 
 	<div class="grid grid-cols-5 gap-3">
 		{#each data.topAnimes as anime}
-			<div>
+			<div class="break-words">
 				{anime.title}
+				{anime.mal_id}
+				{anime.images.jpg.large_image_url}
 			</div>
 		{/each}
+	</div>
+
+	<h2 class="my-6 text-xl">User likes</h2>
+	<div class="grid grid-cols-5 gap-3">
+		{#if data.likes.length}
+			{#each data.likes as like}
+				<div class="break-words">
+					{like.title}
+					{like.jikanId}
+					{like.poster}
+				</div>
+			{/each}
+		{:else}
+			No likes :(
+		{/if}
 	</div>
 </div>

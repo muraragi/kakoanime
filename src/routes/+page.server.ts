@@ -1,16 +1,10 @@
 import { jikanClient } from '$lib/jikan'
 import type { ServerLoadEvent } from '@sveltejs/kit'
 import { AnimeType } from '@tutkli/jikan-ts'
-import { Collections, type TestResponse } from '../types/pocketbase-types'
+import { Collections, type LikeResponse } from '../types/pocketbase-types'
 import type { PageServerLoad } from './$types'
 
 export const load = (async ({ locals }: ServerLoadEvent) => {
-	const records = await locals.pb.collection(Collections.Test).getFullList(200, {
-		sort: '-created'
-	})
-
-	const formattedRecords = records.map((r) => r.export() as TestResponse)
-
 	const topAnimes = (
 		await jikanClient.top.getTopAnime({
 			type: AnimeType.tv,
@@ -19,8 +13,15 @@ export const load = (async ({ locals }: ServerLoadEvent) => {
 		})
 	).data
 
+	let likes: LikeResponse[] = []
+	if (locals.pb.authStore.isValid) {
+		likes = await locals.pb.collection(Collections.Like).getFullList<LikeResponse>()
+	}
+
+	const formattedLikes = JSON.parse(JSON.stringify(likes)) as LikeResponse[]
+
 	return {
-		testData: formattedRecords,
-		topAnimes
+		topAnimes,
+		likes: formattedLikes
 	}
 }) satisfies PageServerLoad
