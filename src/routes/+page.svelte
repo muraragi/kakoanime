@@ -6,7 +6,7 @@
 
 <div class="p-6">
 	{#each data.testData as dataItem}
-		<h1 class="text-2xl text-center mt-3 first-of-type:mt-0">{dataItem.fieeeeeld}</h1>
+		<h1 class="mt-3 text-center text-2xl first-of-type:mt-0">{dataItem.fieeeeeld}</h1>
 	{/each}
 
 	<div class="my-4">

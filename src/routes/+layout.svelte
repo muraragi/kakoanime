@@ -7,11 +7,11 @@
 </script>
 
 <header class="p-6">
-	<nav class="flex gap-x-4 justify-between">
+	<nav class="flex justify-between gap-x-4">
 		<a href="/">home</a>
 		<a href="/auth">login</a>
 
-		<div class="flex gap-x-4 ml-auto">
+		<div class="ml-auto flex gap-x-4">
 			User is: {data.user?.id || 'no user :('}
 			{#if data.user}
 				<form method="POST" action="/auth?/logout" use:enhance>

@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms'
 </script>
 
-<form class="pt-16 w-96 mx-auto" method="POST" action="?/login" use:enhance>
+<form class="mx-auto w-96 pt-16" method="POST" action="?/login" use:enhance>
 	<div class="mt-2">
 		<label for="username">Username</label>
 		<input class="ml-2" type="text" name="username" id="username" />
