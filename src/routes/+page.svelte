@@ -4,33 +4,23 @@
 	export let data: PageData
 </script>
 
-<div class="p-6">
-	<div class="my-4">
-		hello {data.user?.username}
-	</div>
+<div class="mb-4">
+	hello {data.user?.username}
+</div>
 
-	<div class="grid grid-cols-5 gap-3">
-		{#each data.topAnimes as anime}
+<h2 class="mb-4 text-xl">User likes:</h2>
+<div class="grid grid-cols-5 gap-3">
+	{#if data.likes.length}
+		{#each data.likes as like}
 			<div class="break-words">
-				{anime.title}
-				{anime.mal_id}
-				{anime.images.jpg.large_image_url}
+				{like.title}
+				{like.jikanId}
+				<img src={like.poster} alt={like.title} />
 			</div>
 		{/each}
-	</div>
-
-	<h2 class="my-6 text-xl">User likes</h2>
-	<div class="grid grid-cols-5 gap-3">
-		{#if data.likes.length}
-			{#each data.likes as like}
-				<div class="break-words">
-					{like.title}
-					{like.jikanId}
-					{like.poster}
-				</div>
-			{/each}
-		{:else}
-			No likes :(
-		{/if}
-	</div>
+	{:else}
+		No likes :(
+	{/if}
 </div>
+
+<p class="mt-6">This is from env: {data.fromEnv}</p>
