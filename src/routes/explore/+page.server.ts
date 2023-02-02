@@ -29,8 +29,6 @@ export const actions = {
 			owner: locals.pb.authStore.model?.id as string
 		}
 
-		console.log(newLike)
-
 		await locals.pb.collection(Collections.Like).create(newLike)
 	}
 } satisfies Actions
